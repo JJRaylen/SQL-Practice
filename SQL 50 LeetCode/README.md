@@ -93,17 +93,24 @@ WHERE b.bonus <1000 or b.bonus IS NULL
 ```
 [1280. Students and Examinations](https://leetcode.com/problems/students-and-examinations/description/?envType=study-plan-v2&envId=top-sql-50)
 ```sql
-SELECT  a.student_id, 
-        a.student_name,
-        a.subject_name,
-        IFNULL(b.attended_exams,0) as attended_exams 
+SELECT s.student_id, s.student_name, su.subject_name, count(e.student_id) as attended_exams
 FROM
-    (SELECT student_id,student_name,subject_name
-        FROM Students CROSS JOIN Subjects) a
-    LEFT JOIN
-    (SELECT student_id, subject_name, count(*) as attended_exams
-        FROM Examinations
-    GROUP BY student_id,subject_name) b
-    ON a.student_id = b.student_id AND a.subject_name = b.subject_name
-ORDER BY a.student_id, a.subject_name;
+    Students s
+    CROSS JOIN Subjects su
+    LEFT JOIN Examinations e
+    ON s.student_id = e.student_id AND su.subject_name = e.subject_name
+GROUP BY s.student_id, s.student_name, su.subject_name
+ORDER BY s.student_id, su.subject_name
+```
+```sql
+SELECT
+    Students.student_id,
+    Students.student_name,
+    Subjects.subject_name,
+    COUNT(Examinations.student_id) AS attended_exams
+FROM Students
+CROSS JOIN Subjects
+LEFT JOIN Examinations ON (Subjects.subject_name = Examinations.subject_name AND Students.student_id = Examinations.student_id)
+GROUP BY 1,2,3
+ORDER BY Students.student_id ASC;
 ```
