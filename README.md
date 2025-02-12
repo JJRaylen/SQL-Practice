@@ -1,4 +1,4 @@
-# SQL-Practice
+# SQL-Practice Assignment
 ---
 Used to store results for my personal SQL related assignments or challenges.
 ---
