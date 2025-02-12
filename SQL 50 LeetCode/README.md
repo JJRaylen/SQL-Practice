@@ -83,3 +83,27 @@ FROM
     ON e.machine_id = s.machine_id and e.process_id = s.process_id
 GROUP BY e.machine_id
 ```
+[577. Employee Bonus](https://leetcode.com/problems/employee-bonus/description/?envType=study-plan-v2&envId=top-sql-50)
+```sql
+SELECT name, bonus
+FROM
+    Employee e LEFT JOIN Bonus b
+    ON e.empId = b.empId
+WHERE b.bonus <1000 or b.bonus IS NULL
+```
+[1280. Students and Examinations](https://leetcode.com/problems/students-and-examinations/description/?envType=study-plan-v2&envId=top-sql-50)
+```sql
+SELECT  a.student_id, 
+        a.student_name,
+        a.subject_name,
+        IFNULL(b.attended_exams,0) as attended_exams 
+FROM
+    (SELECT student_id,student_name,subject_name
+        FROM Students CROSS JOIN Subjects) a
+    LEFT JOIN
+    (SELECT student_id, subject_name, count(*) as attended_exams
+        FROM Examinations
+    GROUP BY student_id,subject_name) b
+    ON a.student_id = b.student_id AND a.subject_name = b.subject_name
+ORDER BY a.student_id, a.subject_name;
+```
