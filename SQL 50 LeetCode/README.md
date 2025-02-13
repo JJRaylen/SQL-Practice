@@ -114,3 +114,25 @@ LEFT JOIN Examinations ON (Subjects.subject_name = Examinations.subject_name AND
 GROUP BY 1,2,3
 ORDER BY Students.student_id ASC;
 ```
+[[570. Managers with at Least 5 Direct Reports](https://leetcode.com/problems/managers-with-at-least-5-direct-reports/description/?envType=study-plan-v2&envId=top-sql-50)
+```sql
+SELECT temp.name 
+FROM 
+    (SELECT m.id,m.name, count(*) as no_e
+    FROM
+    Employee m INNER JOIN Employee e
+    ON m.id = e.managerID
+    GROUP BY 1,2) as temp
+WHERE no_e >=5;
+```
+[1934. Confirmation Rate](https://leetcode.com/problems/confirmation-rate/description/?envType=study-plan-v2&envId=top-sql-50)
+```sql
+SELECT A.user_id, 
+       ROUND(IFNULL(AVG(action = 'confirmed'), 0), 2) AS confirmation_rate
+FROM Signups AS A
+LEFT JOIN Confirmations AS B ON A.user_id = B.user_id
+GROUP BY A.user_id;
+```
+---
+Basic Aggregate Functions
+---
