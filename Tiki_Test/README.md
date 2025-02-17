@@ -1,6 +1,11 @@
 [CLICK HERE TO VIEW SOURCE TEST](https://drive.google.com/file/d/12Bx1KVPYar_acGFR6DAkS16sNEB-AFmA/view?usp=sharing)
 ---
+Test from **TIKI Marketplace Data Analyst Test**
+This test assesses candidate ability to solve business problems using deductive, inductive,
+and quantitative reasoning and also candidate's SQL skills. The test contains 3 parts: SQL,
+Logical & Problem Solving and Case Study.
 
+This one focus on solving SQL question.
 ### Question 1:
 - Given three following columns in table X:
 #### Table X
