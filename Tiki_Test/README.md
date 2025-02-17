@@ -6,7 +6,9 @@ and quantitative reasoning and also candidate's SQL skills. The test contains 3 
 Logical & Problem Solving and Case Study.
 
 This one focus on solving SQL question.
-### Question 1:
+---
+Question 1:
+---
 - Given three following columns in table X:
 #### Table X
 
@@ -69,6 +71,35 @@ JOIN
 ON Y.Seller_ID = part_a.Seller_ID
 GROUP BY 1,2
 ```
+---
+Question 2:
+---
+You have one sample dataset attached to this test:
+- product_history.csv: records of product’s status & stock changes from May – October
+2018.
+#### Dimension Definitions
+
+| Dimension     | Definition                                    |
+|--------------|----------------------------------------------|
+| Date         | Log Date                                     |
+| Product ID   | Unique ID for each product                  |
+| Product Status | Status of a product:                      |
+|              | - **ON**: Available for Sales               |
+|              | - **OFF**: Unavailable for Sales            |
+| Stock        | Total stock of a product at a specific log date |
+
+a. Write a SQL query to find the number of product that were available for sales at the
+end of each month.
+#### Solution
+```sql
+```
+
+b. Average stock is calculated as: Total stock in a month/ total date in a month. Write a
+SQL query to find Product ID with the most “average stock” by month.
+#### Solution
+```sql
+```
+
 
 
 
