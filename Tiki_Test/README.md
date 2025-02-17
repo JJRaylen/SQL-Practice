@@ -5,9 +5,10 @@ This test assesses candidate ability to solve business problems using deductive,
 and quantitative reasoning and also candidate's SQL skills. The test contains 3 parts: SQL,
 Logical & Problem Solving and Case Study.
 
-This one focus on solving SQL question.
+This project focus on solving SQL question.
+
 ---
-Question 1:
+ Question 1:
 ---
 - Given three following columns in table X:
 #### Table X
@@ -92,12 +93,34 @@ a. Write a SQL query to find the number of product that were available for sales
 end of each month.
 #### Solution
 ```sql
-```
+with cte as(
+SELECT FORMAT(Date, "%Y%m") as Month
+        Count(DISTINCT CASE WHEN ph.produc_status ="ON" then ph.product_id else null end) as ProductAvailable
+FROM product_history ph
+GROUP BY FORMAT(Date, "%Y%m")
+)
 
+SELECT * from cte 
+ORDER BY Month;
+```
 b. Average stock is calculated as: Total stock in a month/ total date in a month. Write a
 SQL query to find Product ID with the most “average stock” by month.
 #### Solution
 ```sql
+with avg_stock as(
+SELECT  FORMAT(Date, "%Y%m") as Month,
+        product_id,
+        AVG(stock)) as avg_stock_by_month
+FROM product_history
+GROUP BY 1,2
+)
+
+SELECT  Month, 
+        product_id,
+        avg_stock_by_month, 
+        DENSE_RANK() OVER( PARTITION BY Month ORDER BY avg_stock_by_month DESC) as rank
+FROM avg_stock
+WHERE rank =1;
 ```
 
 
