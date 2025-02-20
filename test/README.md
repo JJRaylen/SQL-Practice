@@ -1,5 +1,5 @@
 ---
-Test 01 What is AVG Call Duratuon for each saless rep?
+Test 01 What is AVG Call Duration for each saless rep?
 ---
 ```sql
 SELECT  sr.RepID,
